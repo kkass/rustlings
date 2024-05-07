@@ -11,15 +11,32 @@
 // Execute `rustlings hint hashmaps1` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
+
+macro_rules! collection {
+    // map-like
+    ($($k:expr => $v:expr),* $(,)?) => {{
+        core::convert::From::from([$(($k, $v),)*])
+    }};
+    // set-like
+    ($($v:expr),* $(,)?) => {{
+        core::convert::From::from([$($v,)*])
+    }};
+}
 
 use std::collections::HashMap;
 
 fn fruit_basket() -> HashMap<String, u32> {
-    let mut basket = // TODO: declare your hash map here.
+    // let mut basket = collection!{
+    //     "banana".to_owned() => 3,
+    //     "mango".to_owned() => 2,
+    //     "pear".to_owned() => 3,
+    // };
+    let mut basket = HashMap::new();
 
     // Two bananas are already given for you :)
     basket.insert(String::from("banana"), 2);
+    basket.insert(String::from("mango"), 2);
+    basket.insert(String::from("pear"), 2);
 
     // TODO: Put more fruits in your basket here.
 
